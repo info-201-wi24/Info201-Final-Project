@@ -1,8 +1,9 @@
 library(plotly)
+obesity_combined_df <- obesity_combined_df %>% 
+  mutate(State = tolower(State))
 
 ## OVERVIEW TAB INFO
-
-overview_tab <- tabPanel("Overview Tab Title",
+overview_tab <- tabPanel("Introduction",
    h1("INFO 201 Final Project"),
    p("some explanation")
 )
@@ -14,7 +15,7 @@ viz_1_sidebar <- sidebarPanel(
   selectInput(inputId = "use_selection",
               label = "Choose different states", 
               choices = obesity_combined_df$State, 
-              selected = "Washington", 
+              selected = "washington", 
               multiple = TRUE),
   textInput(inputId = "title_input",
             label = "Enter graph title here")
@@ -22,11 +23,11 @@ viz_1_sidebar <- sidebarPanel(
 )
 
 viz_1_main_panel <- mainPanel(
-  h2("The relationship between average household income and obsesity level"),
+  h2("The relationship between average household income and children's obesity level"),
   plotlyOutput(outputId = "viz_1_output_id")
 )
 
-viz_1_tab <- tabPanel("Viz 1 tab title",
+viz_1_tab <- tabPanel("The relationship between average household income and children's obesity level",
   sidebarLayout(
     viz_1_sidebar,
     viz_1_main_panel
@@ -45,7 +46,7 @@ viz_2_main_panel <- mainPanel(
   plotlyOutput(outputId = "viz_2_output_id")
 )
 
-viz_2_tab <- tabPanel("Viz 2 tab title",
+viz_2_tab <- tabPanel("Obesity Level Across US",
   sidebarLayout(
     viz_2_sidebar,
     viz_2_main_panel
