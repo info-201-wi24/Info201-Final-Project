@@ -1,10 +1,6 @@
 library("dplyr")
 
-
-obesity_income_2010_2020 <-
-  Obesity_Dataset %>%
-  left_join(Household_Income_2010, by = "State") %>%
-  left_join(Household_Income_2020, by = "State")
+obesity_income_2010_2020 <- read.csv("/Users/lesterli/Downloads/final-project-/temp_obesity_income")
 
 Income_difference_20_10 <- 
   obesity_income_2010_2020 %>%
