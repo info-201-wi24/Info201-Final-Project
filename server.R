@@ -1,6 +1,6 @@
 library(ggplot2)
 
-obesity_combined_df <- read.csv("/Users/yanghan/Downloads/obesity_combined.csv")
+obesity_combined_df <- read.csv("/Users/yanghan/Desktop/final-project-/Obesity_Income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 
@@ -26,8 +26,8 @@ server <- function(input, output){
       blank_theme +
       labs(
         title = "The relationship between Children's Obesity Level and average income differences",
-        x = "Average Household Income",
-        y = "Children's Obsesity Level in US", 
+        x = "Difference in Household Income between 2010 and 2020",
+        y = "Difference in Children's Obsesity Level in US between 2010 and 2020", 
         color = "States" 
       )
     return(ggplotly(obesity_income_plot))})
@@ -53,8 +53,24 @@ server <- function(input, output){
     return(ggplotly(obesity_plot))})
   
   
+    output$viz_3_output_id <- renderPlotly({
+      selected_df <- obesity_combined_df %>% 
+        filter(State %in% input$use_selection)
+      
+      obesity_income_plot <- ggplot(selected_df) +
+        geom_col(aes(x = Income_2020,
+                       y = Obesity_2020,
+                       fill = State)) +
+        scale_fill_brewer(palette = "Set5")+
+        blank_theme +
+        labs(
+          title = "The relationship between Children's Obesity Level and average income differences",
+          x = "Difference in Household Income between 2010 and 2020",
+          y = "Difference in Children's Obsesity Level in US between 2010 and 2020", 
+          color = "States" 
+        )
+      return(ggplotly(obesity_income_plot))})
   
-    
   # TODO Make outputs based on the UI inputs here
   
 }

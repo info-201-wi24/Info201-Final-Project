@@ -57,12 +57,18 @@ viz_2_tab <- tabPanel("Obesity Level Across US",
 
 viz_3_sidebar <- sidebarPanel(
   h2("Options for graph"),
+  selectInput(inputId = "use_selection",
+              label = "Choose different states", 
+              choices = obesity_combined_df$State, 
+              selected = "washington", 
+              multiple = TRUE),
   #TODO: Put inputs for modifying graph here
 )
 
 viz_3_main_panel <- mainPanel(
   h2("Vizualization 3 Title"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  
+  plotlyOutput(outputId = "viz_3_output_id")
 )
 
 viz_3_tab <- tabPanel("Viz 3 tab title",
@@ -75,8 +81,22 @@ viz_3_tab <- tabPanel("Viz 3 tab title",
 ## CONCLUSIONS TAB INFO
 
 conclusion_tab <- tabPanel("Key Takeaways",
- h1("Some title"),
- p("some conclusions")
+ h1("Conclusion"),
+ p("After analyzing the data and considering various socioeconomic variables, our research has led us to an important conclusion: the correlation between childhood obesity and household income across US states is not straightforward. 
+Despite our initial hypotheses, the numerous socioeconomic factors complicates the relationship between these two variables. 
+
+
+While it's tempting to draw direct correlations between childhood obesity rates and household income levels, our findings suggest otherwise. 
+The multifaceted nature of socioeconomic conditions, including access to healthy food options, educational opportunities, healthcare resources, and community environments, introduces significant complexity into our analysis. 
+
+
+Therefore, as we conclude our study, it's crucial to acknowledge the limitations of oversimplified interpretations and recognize the need for multifaceted approaches to addressing childhood obesity. 
+Public health policies and interventions must take into account the intricate web of determinants that influence health outcomes. By understanding and addressing these factors, we can better serve the diverse needs of communities and work towards achieving equitable health outcomes for all children.
+
+
+In essence, while our research may not provide clear-cut answers regarding the correlation between childhood obesity and household income, it shows the importance of considering all of the socioeconomic variables at play. 
+Our research process has highlighted the necessity of holistic, inclusive approaches when tackling the challenges of childhood obesity.
+")
 )
 
 
