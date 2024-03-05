@@ -5,7 +5,7 @@ obesity_combined_df <- read.csv("/Users/yanghan/Desktop/final-project-/combined_
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 obesity_combined_df <- obesity_combined_df %>% 
-  mutate(obesity_per_diff = Crude.Prevalence...5 - Crude.Prevalence...3)
+  mutate(obesity_per_diff = Crude.Prevalence...5 - Crude.Prevalence...3, na.rm = TRUE)
 
 install.packages("maps")
 install.packages("mapproj")
