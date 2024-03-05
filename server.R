@@ -1,8 +1,11 @@
 library(ggplot2)
+library(dplyr)
 
-obesity_combined_df <- read.csv("/Users/yanghan/Desktop/final-project-/Obesity_Income.csv")
+obesity_combined_df <- read.csv("/Users/yanghan/Desktop/final-project-/combined_Obesity _income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
+obesity_combined_df <- obesity_combined_df %>% 
+  mutate(obesity_per_diff = Crude.Prevalence...5 - Crude.Prevalence...3)
 
 install.packages("maps")
 install.packages("mapproj")
@@ -19,15 +22,15 @@ server <- function(input, output){
       filter(State %in% input$use_selection)
     
     obesity_income_plot <- ggplot(selected_df) +
-      geom_point(aes(x = Income_2020,
-                   y = Obesity_2020,
+      geom_point(aes(x = income_difference_20_10,
+                   y = obesity_per_diff,
                    color = State)) +
       scale_fill_brewer(palette = "Set3")+
       blank_theme +
       labs(
         title = "The relationship between Children's Obesity Level and average income differences",
         x = "Difference in Household Income between 2010 and 2020",
-        y = "Difference in Children's Obsesity Level in US between 2010 and 2020", 
+        y = "Difference in Children's Obsesity Level Percentage in US between 2010 and 2020", 
         color = "States" 
       )
     return(ggplotly(obesity_income_plot))})
@@ -44,10 +47,11 @@ server <- function(input, output){
       )) +
       coord_map() +
       blank_theme +
+      scale_fill_continuous(low = "light blue",
+                            high = "dark blue") +
       labs(
         title = "Children Obsesity Level Across the States",
-        x = "Percentage of College Educated Adults",
-        y = "Percentage of Adults Living in Poverty", 
+        x = "Children's Obesity Level across states in 2020",
         color = "States" 
       )
     return(ggplotly(obesity_plot))})
@@ -55,18 +59,17 @@ server <- function(input, output){
   
     output$viz_3_output_id <- renderPlotly({
       selected_df <- obesity_combined_df %>% 
-        filter(State %in% input$use_selection)
+        filter(State %in% input$user_selection)
       
       obesity_income_plot <- ggplot(selected_df) +
         geom_col(aes(x = Income_2020,
                        y = Obesity_2020,
                        fill = State)) +
-        scale_fill_brewer(palette = "Set5")+
         blank_theme +
         labs(
-          title = "The relationship between Children's Obesity Level and average income differences",
-          x = "Difference in Household Income between 2010 and 2020",
-          y = "Difference in Children's Obsesity Level in US between 2010 and 2020", 
+          title = "The relationship between Children's Obesity Level and 2020 Household Income",
+          x = "Household Income in 2020",
+          y = "Children's Obsesity Level in US in 2020", 
           color = "States" 
         )
       return(ggplotly(obesity_income_plot))})

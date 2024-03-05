@@ -4,14 +4,14 @@ obesity_combined_df <- obesity_combined_df %>%
 
 ## OVERVIEW TAB INFO
 overview_tab <- tabPanel("Introduction",
-   h1("INFO 201 Final Project"),
+   h1("Obesity Level vs US Household Income"),
    p("some explanation")
 )
 
 ## VIZ 1 TAB INFO
 
 viz_1_sidebar <- sidebarPanel(
-  h2("Options for graph"),
+  h2("Select States"),
   selectInput(inputId = "use_selection",
               label = "Choose different states", 
               choices = obesity_combined_df$State, 
@@ -56,8 +56,8 @@ viz_2_tab <- tabPanel("Obesity Level Across US",
 ## VIZ 3 TAB INFO
 
 viz_3_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-  selectInput(inputId = "use_selection",
+  h2("Select States"),
+  selectInput(inputId = "user_selection",
               label = "Choose different states", 
               choices = obesity_combined_df$State, 
               selected = "washington", 
@@ -66,12 +66,12 @@ viz_3_sidebar <- sidebarPanel(
 )
 
 viz_3_main_panel <- mainPanel(
-  h2("Vizualization 3 Title"),
+  h2("The relationship between Children's Obesity Level and 2020 Household Income"),
   
   plotlyOutput(outputId = "viz_3_output_id")
 )
 
-viz_3_tab <- tabPanel("Viz 3 tab title",
+viz_3_tab <- tabPanel("2020 Children's Obesity Level and Household Income",
   sidebarLayout(
     viz_3_sidebar,
     viz_3_main_panel
@@ -101,7 +101,7 @@ Our research process has highlighted the necessity of holistic, inclusive approa
 
 
 
-ui <- navbarPage("INFO 201",
+ui <- navbarPage("The relationship between US Children Obesity Level and National Household Income",
   overview_tab,
   viz_1_tab,
   viz_2_tab,
