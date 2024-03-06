@@ -1,12 +1,8 @@
 library(ggplot2)
 library(dplyr)
-library(shiny)
-library(bslib)
 
-# Be sure to set your working directory to the final project file !!!
-# Should be called "Info201-Final-Project"
-obesity_combined_df <- read.csv("combined_obesity_income.csv")
-obesity_combined_df <- obesity_combined_df %>%
+obesity_combined_df <- read.csv("combined_Obesity _income.csv")
+obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(obesity_per_diff = Crude.Prevalence...5 - Crude.Prevalence...3, na.rm = TRUE)
@@ -14,16 +10,14 @@ obesity_combined_df <- obesity_combined_df %>%
 install.packages("maps")
 install.packages("mapproj")
 state_shape <- map_data("state")
+
 blank_theme <- theme_bw() + theme(
   plot.background = element_blank(),
   panel.grid.major = element_blank(),
   panel.grid.minor = element_blank(),
 )
 
-# This is the server section of the project.
 server <- function(input, output){
-  
-  # This is the first graph we have. It's a scatter plot.
   output$viz_1_output_id <- renderPlotly({
     selected_df <- obesity_combined_df %>% 
       filter(State %in% input$use_selection)
@@ -35,7 +29,7 @@ server <- function(input, output){
       scale_fill_brewer(palette = "Set3")+
       blank_theme +
       labs(
-        title = "Relationship between Childhood Obesity Levels and differences in Household Income",
+        title = "The relationship between Children's Obesity Level and average income differences",
         x = "Difference in Household Income between 2010 and 2020",
         y = "Difference in Children's Obsesity Level Percentage in US between 2010 and 2020", 
         color = "States" 
@@ -57,7 +51,7 @@ server <- function(input, output){
       scale_fill_continuous(low = "light blue",
                             high = "dark blue") +
       labs(
-        title = "Children Obesity Level Across the States",
+        title = "Children Obsesity Level Across the States",
         x = "Children's Obesity Level across states in 2020",
         color = "States" 
       )
