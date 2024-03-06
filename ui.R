@@ -55,8 +55,8 @@ viz_1_sidebar <- sidebarPanel(
               choices = obesity_combined_df$State, 
               selected = "washington", 
               multiple = TRUE),
-  textInput(inputId = "title_input",
-            label = "Enter graph title here")
+  #textInput(inputId = "title_input",
+            #label = "Enter graph title here")
   #TODO: Put inputs for modifying graph here
 )
 
