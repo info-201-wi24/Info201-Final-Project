@@ -6,7 +6,7 @@ library(dplyr)
 
 # Be sure to set your working directory to the final project file !!!
 # Should be called "Info201-Final-Project"
-obesity_combined_df <- read.csv("combined_obesity_income.csv")
+obesity_combined_df <- read.csv("combined_Obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 obesity_combined_df <- obesity_combined_df %>% 
@@ -52,7 +52,7 @@ server <- function(input, output){
     obesity_plot <- ggplot(obesity_shape_df) +
       geom_polygon(aes(x = long, y = lat,
                        group = group,
-                       fill = Obesity_2020,
+                       fill = !!as.name(input$use_choice),
       )) +
       coord_map() +
       blank_theme +
@@ -60,10 +60,13 @@ server <- function(input, output){
                             high = "dark blue") +
       labs(
         title = "Children Obsesity Level Across the States",
-        x = "Children's Obesity Level across states in 2020",
+        x = "Children's Obesity Level across states",
         color = "States" 
       )
-    return(ggplotly(obesity_plot))})
+    
+    return(ggplotly(obesity_plot))
+    })
+  
   
   
     output$viz_3_output_id <- renderPlotly({

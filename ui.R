@@ -2,15 +2,14 @@ library(plotly)
 library(ggplot2)
 library(shiny)
 library(bslib)
-library(dplyr)
 
 my_theme <- bs_theme(bg = "black", # background
                      fg = "white", # foreground color
                      primary = "gray") # primary color
 
-my_theme <- bs_theme_update(my_theme, bootswatch = "cerulean")
+my_theme <- bs_theme_update(my_theme, bootswatch = "morph")
 
-obesity_combined_df <- read.csv("combined_obesity_income.csv")
+obesity_combined_df <- read.csv("combined_Obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 
@@ -34,8 +33,8 @@ overview_tab <- tabPanel("Introduction",
    p("What socioeconomic factors beyond income might contribute to childhood obesity?"),
    
    h2("Data Sources (copy and paste links into your browser): "),
-   p("https://www.cdc.gov/obesity/data/obesity-among-WIC-enrolled-young-children.html"),
-   p("https://fred.stlouisfed.org/release/tables?eid=259515&rid=249"),
+   a("Children Obesity Data", href = "https://www.cdc.gov/obesity/data/obesity-among-WIC-enrolled-young-children.html"),
+   p(a("National Household Income", href = "https://fred.stlouisfed.org/release/tables?eid=259515&rid=249")),
    p("We used these datasets from the CDC about obesity in young children and we also used a dataset from St. Louis FRED (Federal Reserrve Bank) 
      about the median household income. These are the 2 datasets that we combined to see if there was a correlation between the 2 variables."),
    
@@ -55,8 +54,7 @@ viz_1_sidebar <- sidebarPanel(
               choices = obesity_combined_df$State, 
               selected = "washington", 
               multiple = TRUE),
-  #textInput(inputId = "title_input",
-            #label = "Enter graph title here")
+
   #TODO: Put inputs for modifying graph here
 )
 
@@ -75,6 +73,13 @@ viz_1_tab <- tabPanel("The relationship between average household income and chi
 ## VIZ 2 TAB INFO
 
 viz_2_sidebar <- sidebarPanel(
+  h2("Select Years"),
+  radioButtons(inputId = "use_choice",
+              label = "Different Years", 
+              choices = list("Year 2010" = "Obesity_2010",
+                             "Year 2020" = "Obesity_2020"), 
+              selected = "Obesity_2020", 
+              ),
 )
 
 viz_2_main_panel <- mainPanel(
@@ -83,6 +88,7 @@ viz_2_main_panel <- mainPanel(
 )
 
 viz_2_tab <- tabPanel("Obesity Level Across US",
+    viz_2_sidebar,
     viz_2_main_panel
 )
 
@@ -141,10 +147,10 @@ conclusion_tab <- tabPanel("Key Takeaways",
 )
 
 ui <- navbarPage("The relationship between US Children Obesity Level and National Household Income",
-  theme = my_theme,
   overview_tab,
   viz_1_tab,
   viz_2_tab,
   viz_3_tab,
   conclusion_tab,
+  theme = my_theme
 )
