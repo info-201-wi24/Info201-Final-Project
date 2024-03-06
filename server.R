@@ -2,6 +2,7 @@ library(plotly)
 library(ggplot2)
 library(shiny)
 library(bslib)
+library(dplyr)
 
 # Be sure to set your working directory to the final project file !!!
 # Should be called "Info201-Final-Project"

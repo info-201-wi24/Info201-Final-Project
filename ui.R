@@ -2,6 +2,7 @@ library(plotly)
 library(ggplot2)
 library(shiny)
 library(bslib)
+library(dplyr)
 
 my_theme <- bs_theme(bg = "black", # background
                      fg = "white", # foreground color
@@ -140,10 +141,10 @@ conclusion_tab <- tabPanel("Key Takeaways",
 )
 
 ui <- navbarPage("The relationship between US Children Obesity Level and National Household Income",
+  theme = my_theme,
   overview_tab,
   viz_1_tab,
   viz_2_tab,
   viz_3_tab,
   conclusion_tab,
-  theme = my_theme
 )
