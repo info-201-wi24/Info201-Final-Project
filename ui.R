@@ -1,4 +1,12 @@
 library(plotly)
+library(ggplot2)
+library(shiny)
+library(bslib)
+
+my_theme <- bs_theme(bg = "black", # background
+                     fg = "white", # foreground color
+                     primary = "gray") # primary color
+my_theme <- bs_theme_update(my_theme, bootswatch = "cerulean")
 
 obesity_combined_df <- read.csv("combined_obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
@@ -7,11 +15,33 @@ obesity_combined_df <- obesity_combined_df %>%
 ## OVERVIEW TAB INFO
 overview_tab <- tabPanel("Introduction",
    h1("Obesity Level vs US Household Income"),
-   p("some explanation"),
    img(src = "healthwealth.png",
        height = "50%",
        width = "50%",
-       alt = "Health & Money")
+       alt = "Health & Money"),
+   
+   h2("Brief Overview:"),
+   p("Welcome to our research project examining the correlation between childhood obesity and household income.
+     In this study, we aim to explore how socioeconomic factors, specifically household income, may influence childhood obesity rates over time.
+     Our primary focus is on comparing data from 2010 and 2020 to identify any significant patterns or changes. Join us on this journey as we delve
+     into the complex relationship between childhood obesity and household income."),
+   
+   h2("Major Questions:"),
+   p("Is there a correlation between childhood obesity rates and household income across the US states?"),
+   p("How has this correlation within different US states evolved from 2010 to 2020?"),
+   p("What socioeconomic factors beyond income might contribute to childhood obesity?"),
+   
+   h2("Data Sources (copy and paste links into your browser): "),
+   p("https://www.cdc.gov/obesity/data/obesity-among-WIC-enrolled-young-children.html"),
+   p("https://fred.stlouisfed.org/release/tables?eid=259515&rid=249"),
+   p("We used these datasets from the CDC about obesity in young children and we also used a dataset from St. Louis FRED (Federal Reserrve Bank) 
+     about the median household income. These are the 2 datasets that we combined to see if there was a correlation between the 2 variables."),
+   
+   h2("Ethical Considerations:"),
+   p("Privacy: Ensuring the anonymity and confidentiality of survey respondents."),
+   p("Bias: Recognizing potential biases in survey responses and data collection methods."),
+   p("Interpretation: Acknowledging that correlation does not imply causation and that socioeconomic factors are multifaceted. 
+     With too many variables it can be hard to determine any correlation between them."),
 )
 
 ## VIZ 1 TAB INFO

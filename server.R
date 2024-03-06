@@ -1,6 +1,8 @@
 library(ggplot2)
 library(dplyr)
 
+# Be sure to set your working directory to the final project file !!!
+# Should be called "Info201-Final-Project"
 obesity_combined_df <- read.csv("combined_obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
@@ -17,7 +19,10 @@ blank_theme <- theme_bw() + theme(
   panel.grid.minor = element_blank(),
 )
 
+# This is the server section of the project.
 server <- function(input, output){
+  
+  # This is the first graph we have. It's a scatter plot.
   output$viz_1_output_id <- renderPlotly({
     selected_df <- obesity_combined_df %>% 
       filter(State %in% input$use_selection)
