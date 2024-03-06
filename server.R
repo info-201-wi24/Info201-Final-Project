@@ -1,7 +1,7 @@
 library(ggplot2)
 library(dplyr)
 
-obesity_combined_df <- read.csv("combined_Obesity _income.csv")
+obesity_combined_df <- read.csv("combined_obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 obesity_combined_df <- obesity_combined_df %>% 

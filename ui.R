@@ -1,13 +1,17 @@
 library(plotly)
 
-obesity_combined_df <- read.csv("combined_Obesity _income.csv")
+obesity_combined_df <- read.csv("combined_obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(State = tolower(State))
 
 ## OVERVIEW TAB INFO
 overview_tab <- tabPanel("Introduction",
    h1("Obesity Level vs US Household Income"),
-   p("some explanation")
+   p("some explanation"),
+   img(src = "healthwealth.png",
+       height = "50%",
+       width = "50%",
+       alt = "Health & Money")
 )
 
 ## VIZ 1 TAB INFO
