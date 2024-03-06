@@ -6,6 +6,7 @@ library(bslib)
 my_theme <- bs_theme(bg = "black", # background
                      fg = "white", # foreground color
                      primary = "gray") # primary color
+
 my_theme <- bs_theme_update(my_theme, bootswatch = "cerulean")
 
 obesity_combined_df <- read.csv("combined_obesity_income.csv")
@@ -113,29 +114,36 @@ viz_3_tab <- tabPanel("2020 Children's Obesity Level and Household Income",
 
 conclusion_tab <- tabPanel("Key Takeaways",
  h1("Conclusion"),
- p("After analyzing the data and considering various socioeconomic variables, our research has led us to an important conclusion: the correlation between childhood obesity and household income across US states is not straightforward. 
-Despite our initial hypotheses, the numerous socioeconomic factors complicates the relationship between these two variables. 
-
-
-While it's tempting to draw direct correlations between childhood obesity rates and household income levels, our findings suggest otherwise. 
-The multifaceted nature of socioeconomic conditions, including access to healthy food options, educational opportunities, healthcare resources, and community environments, introduces significant complexity into our analysis. 
-
-
-Therefore, as we conclude our study, it's crucial to acknowledge the limitations of oversimplified interpretations and recognize the need for multifaceted approaches to addressing childhood obesity. 
-Public health policies and interventions must take into account the intricate web of determinants that influence health outcomes. By understanding and addressing these factors, we can better serve the diverse needs of communities and work towards achieving equitable health outcomes for all children.
-
-
-In essence, while our research may not provide clear-cut answers regarding the correlation between childhood obesity and household income, it shows the importance of considering all of the socioeconomic variables at play. 
-Our research process has highlighted the necessity of holistic, inclusive approaches when tackling the challenges of childhood obesity.
-")
+ p("After analyzing the data and considering various socioeconomic variables, our research has led us to three important conclusions:"),
+ h6("1. Correlation doesn’t imply causation"),
+ h6("2. Research involves several different factors"),
+ h6("3. In order to fully understand the relationship between different variables, we need to have a holistic and inclusive research approach."),
+ p("This is why despite our initial hypotheses, the numerous socioeconomic factors complicates the relationship between these two variables."),
+ 
+ p("While it's tempting to draw direct correlations between childhood obesity rates and household income levels,
+   our findings suggest otherwise. Just because there was some correlation between the two variables, it was not
+   enough to determine a causation. The multifaceted nature of socioeconomic conditions, including access to healthy
+   food options, educational opportunities, healthcare resources, and even genetics, introduces significant complexity into our analysis."),
+ 
+ p("The research required to draw a causation between childhood obesity rates and household income levels requires
+   the research of several factors. With so many different factors at play, it is hard to determine the exact cause
+   of childhood obesity and even if we could, we cannot say with 100 percent certainty that it is due to only one variable."),
+ 
+ p("Therefore, as we conclude our study, it's crucial to acknowledge the limitations of oversimplified interpretations and recognize
+   the need for multifaceted approaches to addressing childhood obesity. Public health policies and interventions must take into account the
+   intricate web of determinants that influence health outcomes. By understanding and addressing these factors, we can better serve the diverse
+   needs of communities and work towards achieving equitable health outcomes for all children."),
+ 
+ p("In essence, while our research may not provide clear-cut answers regarding the correlation between childhood obesity and household income,
+   it shows the importance of considering all of the socioeconomic variables at play. Our research process has highlighted the necessity of holistic,
+   inclusive approaches when tackling the challenges of childhood obesity.")
 )
-
-
 
 ui <- navbarPage("The relationship between US Children Obesity Level and National Household Income",
   overview_tab,
   viz_1_tab,
   viz_2_tab,
   viz_3_tab,
-  conclusion_tab
+  conclusion_tab,
+  theme = my_theme
 )
