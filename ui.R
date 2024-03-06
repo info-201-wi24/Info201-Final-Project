@@ -3,9 +3,10 @@ library(ggplot2)
 library(shiny)
 library(bslib)
 
-my_theme <- bs_theme(bg = "black", #background
-                     fg = "white", #foreground color
-                     primary = "#FCC780") # primary color
+my_theme <- bs_theme(bg = "black", # background
+                     fg = "white", # foreground color
+                     primary = "gray") # primary color
+my_theme <- bs_theme_update(my_theme, bootswatch = "cerulean")
 
 obesity_combined_df <- read.csv("combined_obesity_income.csv")
 obesity_combined_df <- obesity_combined_df %>% 
