@@ -3,6 +3,8 @@ library(ggplot2)
 library(shiny)
 library(bslib)
 library(dplyr)
+library("maps")
+library("mapproj")
 
 # Be sure to set your working directory to the final project file !!!
 # Should be called "Info201-Final-Project"

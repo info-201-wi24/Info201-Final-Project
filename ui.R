@@ -2,6 +2,8 @@ library(plotly)
 library(ggplot2)
 library(shiny)
 library(bslib)
+library("maps")
+library("mapproj")
 
 my_theme <- bs_theme(bg = "black", # background
                      fg = "white", # foreground color
