@@ -1,13 +1,12 @@
-name: Info201-Final-Project
+name: INFO201-Final-Project
 title: Info201-Final-Project
 username: seanl26
 account: seanl26
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 11413430
-bundleId: 8337047
-url: https://seanl26.shinyapps.io/Info201-Final-Project/
+appId: 11423787
+bundleId: 8342239
+url: https://seanl26.shinyapps.io/INFO201-Final-Project/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: avg_income_obesity.csv|child_obesity.csv|hs_income_2010.csv|hs_income_2020.csv|Nutrition Labels.pdf|README.md

@@ -12,8 +12,6 @@ obesity_combined_df <- obesity_combined_df %>%
 obesity_combined_df <- obesity_combined_df %>% 
   mutate(obesity_per_diff = Crude.Prevalence...5 - Crude.Prevalence...3, na.rm = TRUE)
 
-install.packages("maps")
-install.packages("mapproj")
 state_shape <- map_data("state")
 
 blank_theme <- theme_bw() + theme(
